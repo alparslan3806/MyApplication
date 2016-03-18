@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Created by Toshıba on 11.3.2016.
+ * Created by Alparslan Selçuk Develioğlu on 11.3.2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper
 {

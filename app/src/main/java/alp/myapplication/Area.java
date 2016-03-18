@@ -1,18 +1,14 @@
 package alp.myapplication;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.support.v7.widget.RecyclerView;
-
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
 
 /**
- * Created by Toshıba on 15.3.2016.
+ * Created by Alparslan Selçuk Develioğu on 15.3.2016.
  */
 public class Area
 {
@@ -32,10 +28,13 @@ public class Area
         String area = null;
 
         Iterator<Map.Entry<Double, String>> scanEntries = scanResultsMap.entrySet().iterator();
-        while (scanEntries.hasNext()) {   /** Here entry is scanned results object. */
+        while (scanEntries.hasNext()) {  /** Here MAC adresses which is coming from scan of WiFi is iterated. */
 
-            Map.Entry<Double, String> entry = scanEntries.next();
-            model = db.getDistanceFromBSSID(entry.getValue());
+            Map.Entry<Double, String> entry = scanEntries.next(); /** Here, I got MAC Adresses one by one in entry variable */
+
+            model = db.getDistanceFromBSSID(entry.getValue());/** This is the most accelerator part of this project.
+             I get all records which is its BSSID is equal to scanned MAC Adress. When you click to getDistanceFromBSSID function,
+             you can see the SQL query.*/
             String modelString;
             for (int counter = 0; counter < model.size(); counter++)
             {
@@ -81,6 +80,8 @@ public class Area
 
 
 /**
+ * Version 1 this code is run when there is a little dataset
+ *
  Iterator<Map.Entry<Double, String>> scanEntries = scanResultsMap.entrySet().iterator();
  while (scanEntries.hasNext())
  {

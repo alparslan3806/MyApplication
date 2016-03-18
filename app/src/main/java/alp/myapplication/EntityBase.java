@@ -3,7 +3,7 @@ package alp.myapplication;
 import java.util.Map;
 
 /**
- * Created by Toshıba on 15.3.2016.
+ * Created by Alparslan Selçuk Develioğlu on 15.3.2016.
  */
 public class EntityBase {
     private int ID;
