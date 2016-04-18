@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         double exp = (27.55 - (20 * Math.log10(freqInMHz)) + Math.abs(levelInDb)) / 20.0;
         return Math.pow(10.0, exp);
     }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +58,18 @@ public class MainActivity extends AppCompatActivity {
                 results = wifi.getScanResults();
                 TreeMap resultMap = new TreeMap<>();
 
-
+                /**
+                 * This loop is the most important part of the project.
+                 * We send Signal Level and Signal Frequency to calculateDistance method.
+                 * The calculated distance and MAC adress of modem will be recorded to (TreeMap)resultMap.
+                 */
                 for (ScanResult s : results) {
                     resultMap.put(calculateDistance(s.level, s.frequency), s.BSSID);
                 }
 
-                //This line of code guarantees 5 nearest modems are
+                /**
+                 * Here we got the 5 nearest modems from resultMap. FiveOfResultMap is also a TreeMap
+                 */
                 int count = 0;
                 Iterator<Map.Entry<Double, String>> entries = resultMap.entrySet().iterator();
                 while(entries.hasNext())
@@ -76,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 textView = (TextView) findViewById(R.id.myTextView);
                 textView.setText(FiveOfResultMap.toString());
                 if(FiveOfResultMap.size() > 0){
+                    /**
+                     * This part is finding zone. We sent nearest 5 modems to Area Class.
+                     * In this class, we have several operations.
+                     */
                     Area areaClass = new Area(context);
                     areaClass.findZone(FiveOfResultMap);
                 }

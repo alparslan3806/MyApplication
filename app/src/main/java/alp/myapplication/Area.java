@@ -22,16 +22,12 @@ public class Area
         this.context = context;
         db = new DatabaseHelper(context);
     }
-
     public String findZone(TreeMap<Double, String> scanResultsMap)
     {
         String area = null;
-
         Iterator<Map.Entry<Double, String>> scanEntries = scanResultsMap.entrySet().iterator();
         while (scanEntries.hasNext()) {  /** Here MAC adresses which is coming from scan of WiFi is iterated. */
-
             Map.Entry<Double, String> entry = scanEntries.next(); /** Here, I got MAC Adresses one by one in entry variable */
-
             model = db.getDistanceFromBSSID(entry.getValue());/** This is the most accelerator part of this project.
              I get all records which is its BSSID is equal to scanned MAC Adress. When you click to getDistanceFromBSSID function,
              you can see the SQL query.*/
@@ -71,8 +67,6 @@ public class Area
                 area = findedArea;
             }
         }
-
-
         return area;
     }
 }
